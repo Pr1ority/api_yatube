@@ -4,6 +4,7 @@ from rest_framework import serializers
 
 class CommentSerializer(serializers.ModelSerializer):
     post_id = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all())
+    
     class Meta:
         model = Comment
         fields = ('post_id', 'author', 'text', 'created')
