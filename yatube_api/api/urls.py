@@ -29,6 +29,8 @@ comment_detail = CommentViewSet.as_view({
 })
 
 urlpatterns += [
-    re_path(r'api/v1/posts/(?P<post_id>\d+)/comments/$', comment_list, name='comment-list'),
-    re_path(r'api/v1/posts/(?P<post_id>\d+)/comments/(?P<pk>\d+)/$', comment_detail, name='comment-detail'),
+    re_path(r'api/v1/posts/(?P<post_id>\d+)/comments/$', comment_list,
+            name='comment-list'),
+    re_path(r'api/v1/posts/(?P<post_id>\d+)/comments/(?P<pk>\d+)/$',
+            comment_detail, name='comment-detail'),
 ]

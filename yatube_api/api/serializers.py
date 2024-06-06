@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    post= serializers.PrimaryKeyRelatedField(queryset=Post.objects.all())
+    post = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all())
 
     class Meta:
         model = Comment
@@ -15,7 +15,8 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ('id', 'author', 'text', 'pub_date', 'image', 'group', 'comments')
+        fields = ('id', 'author', 'text', 'pub_date', 'image', 'group',
+                  'comments')
 
 
 class GroupSerializer(serializers.ModelSerializer):
