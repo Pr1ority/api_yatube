@@ -9,7 +9,7 @@ from django.core.exceptions import PermissionDenied
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
 
     def perform_update(self, serializer):
         if serializer.instance.author != self.request.user:
