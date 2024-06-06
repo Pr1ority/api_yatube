@@ -3,13 +3,12 @@ from rest_framework import serializers
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    post = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all(),
-                                              read_only=True)
     author = serializers.ReadOnlyField(source='author.username')
 
     class Meta:
         model = Comment
         fields = ('id', 'post', 'author', 'text', 'created')
+        read_only_fields = ('post')
 
 
 class PostSerializer(serializers.ModelSerializer):
