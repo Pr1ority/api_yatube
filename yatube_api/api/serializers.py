@@ -9,11 +9,6 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = ('id', 'post', 'author', 'text', 'created')
 
-    def validate_text(self, value):
-        if not value.strip():
-            raise serializers.ValidationError("Текст не может быть пустым")
-        return value
-
 
 class PostSerializer(serializers.ModelSerializer):
     comments = CommentSerializer(many=True, read_only=True)
