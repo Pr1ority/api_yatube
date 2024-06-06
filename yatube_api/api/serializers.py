@@ -3,19 +3,19 @@ from rest_framework import serializers
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    post_id = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all())
+    post= serializers.PrimaryKeyRelatedField(queryset=Post.objects.all())
 
     class Meta:
         model = Comment
-        fields = ('post_id', 'author', 'text', 'created')
+        fields = ('id', 'post', 'author', 'text', 'created')
 
 
 class PostSerializer(serializers.ModelSerializer):
-    comments = CommentSerializer(many=True)
+    comments = CommentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Post
-        fields = ('author', 'text', 'pub_date', 'image', 'group', 'comments')
+        fields = ('id', 'author', 'text', 'pub_date', 'image', 'group', 'comments')
 
 
 class GroupSerializer(serializers.ModelSerializer):
@@ -23,4 +23,4 @@ class GroupSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Group
-        fields = ('title', 'slug', 'description', 'posts')
+        fields = ('id', 'title', 'slug', 'description', 'posts')
