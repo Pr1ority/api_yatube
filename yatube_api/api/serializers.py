@@ -3,11 +3,11 @@ from rest_framework import serializers
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    post_id = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all())
+    post = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all())
 
     class Meta:
         model = Comment
-        fields = ('id', 'post_id', 'author', 'text', 'created')
+        fields = ('id', 'post', 'author', 'text', 'created')
 
 
 class PostSerializer(serializers.ModelSerializer):

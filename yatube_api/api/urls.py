@@ -1,5 +1,5 @@
 from posts.views import PostViewSet, GroupViewSet, CommentViewSet
-from django.urls import path, include, re_path
+from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
@@ -27,8 +27,6 @@ comment_detail = CommentViewSet.as_view({
 })
 
 urlpatterns += [
-    re_path(r'api/v1/posts/(?P<post_id>\d+)/comments/$', comment_list,
-            name='comment-list'),
-    re_path(r'api/v1/posts/(?P<post_id>\d+)/comments/(?P<pk>\d+)/$',
-            comment_detail, name='comment-detail'),
+    path('api/v1/posts/<int:post_id>/comments/', comment_list, name='comment-list'),
+    path('api/v1/posts/<int:post_id>/comments/<int:pk>/', comment_detail, name='comment-detail'),
 ]
