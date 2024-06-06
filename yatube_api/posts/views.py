@@ -26,6 +26,11 @@ class CommentViewSet(viewsets.ModelViewSet):
         post_id = self.kwargs.get('post_id')
         new_queryset = Comment.objects.filter(post=post_id)
         return new_queryset
+    
+    def perform_create(self, serializer):
+        post_id = self.kwargs.get('post_id')
+        post = Post.objects.get(id=post_id)
+        serializer.save(author=self.request.user, post=post)
 
 
 class GroupViewSet(viewsets.ModelViewSet):
